@@ -2,7 +2,7 @@ import React from "react";
 import { assets, dummyUserData } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import MenuItems from "./MenuItems";
-import { CirclePlus, Link as LinkIcon } from "lucide-react";
+import { CirclePlus, Link as LinkIcon, LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
 import { UserButton, useClerk } from "@clerk/clerk-react";
 
@@ -45,6 +45,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
             <p className="text-xs text-gray-500">@{user.username}</p>
           </div>
         </div>
+        <LogOut
+          onClick={signOut}
+          className="w-4.5 text-gray-400 hover:text-gray-700 transition cursor-pointer"
+        />
       </div>
     </div>
   );
