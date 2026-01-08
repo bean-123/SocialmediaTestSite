@@ -1,12 +1,15 @@
 import React from "react";
-import { assets } from "../assets/assets";
+import { assets, dummyUserData } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import MenuItems from "./MenuItems";
 import { CirclePlus, Link as LinkIcon } from "lucide-react";
 import { Link } from "react-router-dom";
+import { UserButton, useClerk } from "@clerk/clerk-react";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const navigate = useNavigate();
+  const user = dummyUserData;
+  const { signOut } = useClerk();
 
   return (
     <div
@@ -33,6 +36,15 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
           <CirclePlus className="w-5 h-5" />
           Create Post
         </Link>
+      </div>
+      <div className="w-full border-t border-gray-200 p-4 px-7 flex items-center justify-between">
+        <div className="flex gap-2 items-center cursor-pointer">
+          <UserButton />
+          <div>
+            <h1 className="text-sm font-medium">{user.full_name}</h1>
+            <p className="text-xs text-gray-500">@{user.username}</p>
+          </div>
+        </div>
       </div>
     </div>
   );
